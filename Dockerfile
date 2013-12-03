@@ -2,15 +2,18 @@
 #
 # VERSION               0.2
 
-FROM ubuntu:latest
+FROM allisson/docker-ubuntu:latest
 MAINTAINER Allisson Azevedo <allisson@gmail.com>
 
 # avoid debconf and initrd
 ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
 
+# add mongodb repo
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
+
 # install packages
-RUN echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" >> /etc/apt/source.list
 RUN apt-get update
 RUN apt-get install -y openssh-server mongodb-10gen supervisor
 

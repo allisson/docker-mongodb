@@ -10,6 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV INITRD No
 
 # install packages
+RUN echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" >> /etc/apt/source.list
 RUN apt-get update
 RUN apt-get install -y openssh-server mongodb-10gen supervisor
 

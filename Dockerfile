@@ -1,6 +1,6 @@
 # Mongodb
 #
-# VERSION               0.2
+# VERSION               0.3
 
 FROM allisson/docker-ubuntu:latest
 MAINTAINER Allisson Azevedo <allisson@gmail.com>
@@ -32,6 +32,9 @@ RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # expose mongodb port
 EXPOSE 22 27017
+
+# volumes
+VOLUME ["/data/db"]
 
 # copy supervisor conf
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
